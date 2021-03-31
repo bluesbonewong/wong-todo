@@ -19,7 +19,7 @@ function printTask(list) {
         if (idx >= 0) askForAction(list, idx);
         else if (idx === -1) askForCreateTask(list);
     });
-};
+}
 
 // 更多操作
 function askForAction(list, idx) {
@@ -47,12 +47,12 @@ function askForAction(list, idx) {
 
 function markAsDone(list, idx) {
     list[idx].done = true;
-    db.write(list).then(success => console.log("操作成功！"), err => console.log("操作失败！"));
+    db.write(list).then(() => console.log("操作成功！"), () => console.log("操作失败！"));
 }
 
 function markAsUndo(list, idx) {
     list[idx].done = false;
-    db.write(list).then(success => console.log("操作成功！"), err => console.log("操作失败！"));
+    db.write(list).then(() => console.log("操作成功！"), () => console.log("操作失败！"));
 }
 
 function updateTitle(list, idx) {
@@ -66,13 +66,13 @@ function updateTitle(list, idx) {
     ])
     .then((answers) => {
         list[idx].title = answers.title;
-        db.write(list).then(success => console.log("操作成功！"), err => console.log("操作失败！"));
+        db.write(list).then(() => console.log("操作成功！"), () => console.log("操作失败！"));
     });
 }
 
 function remove(list, idx) {
     list.splice(idx, 1);
-    db.write(list).then(success => console.log("操作成功！"), err => console.log("操作失败！"));
+    db.write(list).then(() => console.log("操作成功！"), () => console.log("操作失败！"));
 }
 
 // 创建任务
@@ -88,7 +88,7 @@ function askForCreateTask(list) {
     .then((answers) => {
         let task = {title: answers.title};
         list.push(task);
-        db.write(list).then(success => console.log("操作成功！"), err => console.log("操作失败！"));
+        db.write(list).then(() => console.log("操作成功！"), () => console.log("操作失败！"));
     });
 }
 
